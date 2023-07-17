@@ -109,6 +109,9 @@
                     type: 'text',
                     text: message
                 }
+
+                liff.closeWindow();
+
                 ]).then(res => console.log(res.status))
                 .catch(error => console.log(error));
             });
