@@ -5,9 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<style>
+
+    body{
+        background: rgb(241, 245, 248);
+    }
+    
+    .content{
+        text-align: center;
+        margin: auto;
+    }
+
+    .btn{
+        display: inline-block;
+        width: 4rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-weight: bold;
+        background: rgb(255, 196, 0);
+        color: rgb(60, 60, 60);
+        font-size: 1rem;
+        border-radius: 999999px;
+        cursor: pointer;
+    }
+</style>
 <body>
-    <h1>TEST</h1>
-    <button id="sendMessage">SEND TEST</button>
+    <section class="content">
+        <h1>轉業夥伴搜尋</h1>
+        <label for="search-criteria-4">縣市: </label>
+        <select class="custom-select" id="search-criteria-4" onchange="if (!window.__cfRLUnblockHandlers) return false; categorySubmit()">
+            <option value="">全部</option>
+                <option value="基隆市">
+                基隆市 </option>
+                <option value="臺北市">
+                臺北市 </option>
+                <option value="新北市">
+                新北市 </option>
+                <option value="桃園市">
+                桃園市 </option>
+                <option value="新竹市">
+                新竹市 </option>
+                <option value="新竹縣">
+                新竹縣 </option>
+                <option value="苗栗縣">
+                苗栗縣 </option>
+                <option value="臺中市">
+                臺中市 </option>
+                <option value="彰化縣">
+                彰化縣 </option>
+                <option value="南投縣">
+                南投縣 </option>
+                <option value="雲林縣">
+                雲林縣 </option>
+                <option value="嘉義市">
+                嘉義市 </option>
+                <option value="嘉義縣">
+                嘉義縣 </option>
+                <option value="臺南市">
+                臺南市 </option>
+                <option value="高雄市">
+                高雄市 </option>
+                <option value="屏東縣">
+                屏東縣 </option>
+                <option value="臺東縣">
+                臺東縣 </option>
+                <option value="花蓮縣">
+                花蓮縣 </option>
+                <option value="宜蘭縣">
+                宜蘭縣 </option>
+                <option value="澎湖縣">
+                澎湖縣 </option>
+                <option value="金門縣">
+                金門縣 </option>
+                <option value="連江縣">
+                連江縣 </option>
+            </select>
+        <span id="sendMessage" class="btn">查詢</span>
+    </section>
+    
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
       var liffID = '2000149270-P6qd2Y4z';
@@ -26,7 +102,8 @@
 
             const btnMessage = document.getElementById('sendMessage');
             btnMessage.addEventListener('click', () => {
-                let message = "Hello World";
+                let message = "專業夥伴:"document.querySelector("#search-criteria-4").value;
+                console.log(message)
                 liff.sendMessages([
                 {
                     type: 'text',
