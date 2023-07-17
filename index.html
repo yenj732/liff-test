@@ -102,7 +102,7 @@
 
             const btnMessage = document.getElementById('sendMessage');
             btnMessage.addEventListener('click', () => {
-                let message = "專業夥伴:"document.querySelector("#search-criteria-4").value;
+                let message = "專業夥伴:" + document.querySelector("#search-criteria-4").value;
                 console.log(message)
                 liff.sendMessages([
                 {
