@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TEST</h1>
+    <button id="sendMessage">SEND TEST</button>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+      var liffID = '2000149270-P6qd2Y4z';
+
+      liff.init({
+        liffId: liffID
+      }).then(function() {
+        console.log('LIFF init');
+        
+        // 這邊開始寫使用其他功能
+        
+        const btnMessage = document.getElementById('sendMessage');
+        btnMessage.addEventListener('click', () => {
+            let message = "Hello World";
+            liff.sendMessages([
+            {
+                type: 'text',
+                text: message
+            }
+            ]).then(res => window.alert(res.status))
+            .catch(error => window.alert(error));
+        });
+
+      }).catch(function(error) {
+        console.log(error);
+      });
+
+
+    </script>
+
+</body>
+</html>
