@@ -100,13 +100,15 @@
     }
     
     .advanceFilterButton::after{
-        content: "》";
+        content: "+";
         position: absolute;
-        font-size: 2rem;
-        right: -2rem;
-        top: 70%;
-        writing-mode: vertical-lr;
+        font-size: 1.5rem;
+        right: -1.5rem;
+        top: 50%;
         transform: translate(0, -50%);
+    }
+    .advanceFilterButton.active::after{
+        content: "-";
     }
 
 </style>
