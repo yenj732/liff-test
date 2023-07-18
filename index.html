@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,20 @@
 </head>
 
 <style>
-
-    body{
-        background: rgb(241, 245, 248);
+    body {
+        background: rgb(248, 248, 248);
     }
-    
-    div{
+
+    div {
         margin-top: 1rem;
     }
 
-    .content{
+    .content {
         text-align: center;
         margin: auto;
     }
 
-    .btn{
+    .btn {
         display: inline-block;
         width: 4rem;
         height: 2rem;
@@ -33,117 +33,222 @@
         border-radius: 999999px;
         cursor: pointer;
     }
-    
-    .custom-select, input{
+
+    .custom-select,
+    input {
         border-radius: 8px;
         padding: 0.5rem 1rem;
         border: #AAAAAA solid 1px;
     }
 
+    select:focus,
+    input:focus {
+        outline: #ff9100 1px solid
+    }
+
+    .selector{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .selector input{
+        display: none;
+    }
+
+    .selector label span{
+        border-radius: 999999px;
+        border: #646464 2px solid;
+        color: #646464;
+        padding: 0.5rem 1rem;
+        transition: 0.2s;
+        cursor: pointer;
+        user-select: none;
+        word-break: keep-all;
+        line-height: 3rem;
+        margin: 0 0.2rem;
+    }
+
+    .selector label input[type="checkbox"]:checked+span{
+        border: #ff9100 2px solid;
+        color: #ff9100;
+    }
+
+    .advanceFilter{
+        display: grid;
+        grid-template-rows: 0px;
+        transition: 0.2s;
+        overflow: hidden;
+    }
+
+    .advanceFilter.active{
+        grid-template-rows: 100vh;
+    }
+
+    .advanceFilterButton{
+        position: relative;
+        font-size: 1.5rem;
+        color: rgb(96, 149, 219);
+        font-weight: 900;
+        transition: 0.2s;
+    }
+
+    .advanceFilterButton.active{
+        color: #ff9100;
+    }
+    
+    .advanceFilterButton::after{
+        content: "》";
+        position: absolute;
+        font-size: 2rem;
+        right: -2rem;
+        top: 70%;
+        writing-mode: vertical-lr;
+        transform: translate(0, -50%);
+    }
+
 </style>
+
 <body>
     <section class="content">
         <h1>專業夥伴搜尋</h1>
         <div>
             <label for="search-criteria-4">縣市: </label>
-            <select class="custom-select" id="search-criteria-4" onchange="if (!window.__cfRLUnblockHandlers) return false; categorySubmit()">
+            <select class="custom-select" id="search-criteria-4"
+                onchange="if (!window.__cfRLUnblockHandlers) return false; categorySubmit()">
                 <option value="">全部</option>
-                    <option value="基隆市">
+                <option value="基隆市">
                     基隆市 </option>
-                    <option value="臺北市">
+                <option value="臺北市">
                     臺北市 </option>
-                    <option value="新北市">
+                <option value="新北市">
                     新北市 </option>
-                    <option value="桃園市">
+                <option value="桃園市">
                     桃園市 </option>
-                    <option value="新竹市">
+                <option value="新竹市">
                     新竹市 </option>
-                    <option value="新竹縣">
+                <option value="新竹縣">
                     新竹縣 </option>
-                    <option value="苗栗縣">
+                <option value="苗栗縣">
                     苗栗縣 </option>
-                    <option value="臺中市">
+                <option value="臺中市">
                     臺中市 </option>
-                    <option value="彰化縣">
+                <option value="彰化縣">
                     彰化縣 </option>
-                    <option value="南投縣">
+                <option value="南投縣">
                     南投縣 </option>
-                    <option value="雲林縣">
+                <option value="雲林縣">
                     雲林縣 </option>
-                    <option value="嘉義市">
+                <option value="嘉義市">
                     嘉義市 </option>
-                    <option value="嘉義縣">
+                <option value="嘉義縣">
                     嘉義縣 </option>
-                    <option value="臺南市">
+                <option value="臺南市">
                     臺南市 </option>
-                    <option value="高雄市">
+                <option value="高雄市">
                     高雄市 </option>
-                    <option value="屏東縣">
+                <option value="屏東縣">
                     屏東縣 </option>
-                    <option value="臺東縣">
+                <option value="臺東縣">
                     臺東縣 </option>
-                    <option value="花蓮縣">
+                <option value="花蓮縣">
                     花蓮縣 </option>
-                    <option value="宜蘭縣">
+                <option value="宜蘭縣">
                     宜蘭縣 </option>
-                    <option value="澎湖縣">
+                <option value="澎湖縣">
                     澎湖縣 </option>
-                    <option value="金門縣">
+                <option value="金門縣">
                     金門縣 </option>
-                    <option value="連江縣">
+                <option value="連江縣">
                     連江縣 </option>
-                </select>
-            </div>
+            </select>
+        </div>
 
-            <div>
-                <label for="keyword">關鍵字搜尋: </label>
-                <input id="keyword" type="text">
-            </div>
+        <div>
+            <label for="keyword">關鍵字搜尋: </label>
+            <input id="keyword" type="text">
+        </div>
 
-            <div>
-                <span id="sendMessage" class="btn">查詢</span>
+        <div>
+            <span id="sendMessage" class="btn">查詢</span>
+        </div>
+
+        <div>
+            <span class="advanceFilterButton" onclick="this.classList.toggle('active');document.querySelector('.advanceFilter').classList.toggle('active')">進階搜尋</span>
+            <div class="advanceFilter">
+                <div>
+                    <label>行業篩選:</label>
+                    <div class="selector">
+                    </div>    
+                </div>
             </div>
-    </section>
     
+        </div>
+
+    </section>
+
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-      var liffID = '2000149270-P6qd2Y4z';
+        var liffID = '2000149270-P6qd2Y4z';
 
-      async function main(){
-        await liff.init({
-            liffId: liffID
-        }).then(function() {
-            console.log('LIFF init');
-            
-            // 這邊開始寫使用其他功能
-            // liff.sendMessages([{
-            //     type: 'text',
-            //     text: 'Hello world'
-            // }])
+        async function main() {
+            await liff.init({
+                liffId: liffID
+            }).then(function () {
+                console.log('LIFF init');
 
-            const btnMessage = document.getElementById('sendMessage');
-            btnMessage.addEventListener('click', () => {
-                let message = "專業夥伴:" + document.querySelector("#search-criteria-4").value + "\t" + document.querySelector("#keyword").value;
-                console.log(message)
-                liff.sendMessages([
-                {
-                    type: 'text',
-                    text: message
-                }
+                // 這邊開始寫使用其他功能
+                // liff.sendMessages([{
+                //     type: 'text',
+                //     text: 'Hello world'
+                // }])
 
-                ]).then(res => liff.closeWindow())
-                .catch(error => console.log(error));
+                const btnMessage = document.getElementById('sendMessage');
+                btnMessage.addEventListener('click', () => {
+                    let filterArr = [];
+                    document.querySelectorAll(".selector input[type='checkbox']:checked").forEach((item)=>{
+                        filterArr.push(item.value);
+                    })
+                    let message = "專業夥伴:" + document.querySelector("#search-criteria-4").value + "\t" + document.querySelector("#keyword").value + "\t" + filterArr.join(",");
+                    console.log(message)
+                    liff.sendMessages([
+                        {
+                            type: 'text',
+                            text: message
+                        }
+
+                    ]).then(res => liff.closeWindow())
+                        .catch(error => console.log(error));
+                });
+
+            }).catch(function (error) {
+                console.log(error);
             });
 
-        }).catch(function(error) {
-            console.log(error);
-        });
+        }
 
-      }
-
-      main();
+        main();
 
     </script>
 
+    <script>
+        var data = [{ "name": "建築師", "value": "1" }, { "name": "建築從業人員", "value": "2" }, { "name": "建築相關系所老師", "value": "3" }, { "name": "建築相關系所學生", "value": "4" }, { "name": "室內設計師", "value": "5" }, { "name": "室內從業人員", "value": "6" }, { "name": "室內相關系所老師", "value": "7" }, { "name": "室內相關系所學生", "value": "8" }, { "name": "景觀設計師", "value": "21" }, { "name": "景觀從業人員", "value": "22" }, { "name": "景觀相關系所老師", "value": "23" }, { "name": "景觀相關系所學生", "value": "24" }, { "name": "土木技師", "value": "26" }, { "name": "結構技師", "value": "25" }, { "name": "水利技師", "value": "27" }, { "name": "大地技師", "value": "28" }, { "name": "測量技師", "value": "29" }, { "name": "都計技師", "value": "30" }, { "name": "水保技師", "value": "31" }, { "name": "地質技師", "value": "32" }, { "name": "土建類從業人員", "value": "88" }, { "name": "土建類相關系所老師", "value": "33" }, { "name": "土建類相關系所學生", "value": "34" }, { "name": "電機技師", "value": "35" }, { "name": "消防技師", "value": "36" }, { "name": "空調技師", "value": "37" }, { "name": "環工技師", "value": "38" }, { "name": "機電類從業人員", "value": "90" }, { "name": "機電類相關系所老師", "value": "39" }, { "name": "機電類相關系所學生", "value": "40" }]
+        let selector = document.querySelector(".selector")
+        for(let i = 0 ; i < data.length ; i++){
+            let label = document.createElement("label");
+            let span = document.createElement("span");
+            let input = document.createElement("input");
+            input.type = "checkbox";
+            input.value = data[i].value;
+            span.innerHTML = data[i].name;
+
+            label.append(input);
+            label.append(span);
+
+            selector.append(label)
+        }
+    </script>
+
 </body>
+
 </html>
