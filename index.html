@@ -48,8 +48,10 @@
 
     .selector{
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        /* justify-content: center; */
+        width: 90vw;
     }
 
     .selector input{
@@ -70,19 +72,21 @@
     }
 
     .selector label input[type="checkbox"]:checked+span{
-        border: #ff9100 2px solid;
-        color: #ff9100;
+        border: #ff8800 2px solid;
+        color: #ff8800;
     }
 
     .advanceFilter{
         display: grid;
         grid-template-rows: 0px;
-        transition: 0.2s;
+        transition: 0.5s;
+        width: 90vw;
+        margin: auto;
         overflow: hidden;
     }
 
     .advanceFilter.active{
-        grid-template-rows: 100vh;
+        grid-template-rows: 10rem;
     }
 
     .advanceFilterButton{
@@ -181,7 +185,11 @@
             <span class="advanceFilterButton" onclick="this.classList.toggle('active');document.querySelector('.advanceFilter').classList.toggle('active')">進階搜尋</span>
             <div class="advanceFilter">
                 <div>
-                    <label>行業篩選:</label>
+                    <!-- <div style="text-align: left;">行業篩選:</div> -->
+                    <div>
+                        <label for="filterSearch">搜尋標籤: </label>
+                        <input id="filterSearch" type="text">
+                    </div>
                     <div class="selector">
                     </div>    
                 </div>
@@ -243,6 +251,7 @@
             let span = document.createElement("span");
             let input = document.createElement("input");
             input.type = "checkbox";
+            label.dataset.name = data[i].name;
             input.value = data[i].value;
             span.innerHTML = data[i].name;
 
@@ -251,6 +260,22 @@
 
             selector.append(label)
         }
+    </script>
+
+    <script>
+        //搜尋標籤
+
+        document.querySelector("#filterSearch").addEventListener("input", (e)=>{
+            // console.log(e.target.value)
+
+            document.querySelectorAll(`.selector label`).forEach((item)=>{
+                item.style = "";
+            })
+
+            document.querySelectorAll(`.selector label:not([data-name*='${e.target.value}'])`).forEach((item)=>{
+                item.style.display = "none";
+            })
+        })
     </script>
 
 </body>
