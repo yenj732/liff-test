@@ -271,10 +271,11 @@
             document.querySelectorAll(`.selector label`).forEach((item)=>{
                 item.style = "";
             })
-
-            document.querySelectorAll(`.selector label:not([data-name*='${e.target.value}'])`).forEach((item)=>{
-                item.style.display = "none";
-            })
+            
+            if(e.target.value != "")
+                document.querySelectorAll(`.selector label:not([data-name*='${e.target.value}'])`).forEach((item)=>{
+                    item.style.display = "none";
+                })
         })
     </script>
 
